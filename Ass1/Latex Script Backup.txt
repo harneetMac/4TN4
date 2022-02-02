@@ -1,0 +1,245 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper,top=2cm,bottom=2.5cm,left=1.5cm,right=1.5cm,marginparwidth=1.75cm]{geometry}
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{listings}
+\usepackage{textgreek}
+
+%% Sets page size and margins
+
+\usepackage{float}
+%% Useful packages
+\usepackage{siunitx}
+\usepackage{amsmath}
+\setlength{\marginparwidth}{2cm}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+% \DeclareGraphicsExtensions{.pdf,.jpg,.png}
+
+%% defined colors
+\definecolor{Blue}{rgb}{0,0,0.5}
+\definecolor{Green}{rgb}{0,0.75,0.0}
+\definecolor{LightGray}{rgb}{0.6,0.6,0.6}
+\definecolor{DarkGray}{rgb}{0.3,0.3,0.3}
+
+\title{Assignment \#1}
+\author{HARNEET SINGH (400110275)}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Theory}
+\subsection*{1.1}
+Camera resolution shows the upper limit of number of pixels, i.e. picture elements, in an image taken by the camera. In the given smartphone specifications, there are three cameras on the back for specific purposes and on the front side (selfie camera), there is only one camera. Back cameras have resolutions of 50 MP, 12 MP and 40 MP respectively, and selfie camera has a resolution of 32 MP. NOTE: $(1 \: Megapixels = 10^6\:pixels). $
+\\A more advanced definition of resolution defines number of pixels (also known as photosites - capture amount of incoming light and produce data for the image) on the surface of the digital camera's sensor (Bayer - CFA). Although higher resolution yields better image quality (finer details), but it does not always lead to a better performing camera which depends on other factors as well. 
+\\ Another important point to note is that the image resolution and video resolution on the same device differ from one another. 
+
+\subsection*{1.2}
+Pixel size is the dimension of a pixel on a camera sensor and it is used to retrieve light information when taking an image. Obviously, larger the pixel size, the more light it can receive which provides better image quality, especially in low light conditions. As the resolution (number of pixels) increases on a sensor, the pixel size decreases which can impact the image quality. 
+\\In the given specifications, the main camera's pixel size is \SI{2.44}{\micro\metre} (microns) while the selfie camera's pixel size is \SI{2.44}{\micro\metre}. Clearly, the main camera will outperform the selfie camera in a dark settings, because the pixel size of main camera is larger in comparison to selfie camera's pixel size.  
+\\As the pixel size diminishes, there is a higher chance of capturing digital noise. A binning technique is deployed which utilizes multiple pixels to form a single pixel 'super-pixel' i.e. light information from multiple sensors is combined to form a single pixel.
+
+\subsection*{1.3}
+PDAF stands for Phase Detection Auto Focus which is a technique used to auto focus the camera lens on an object. In phone cameras, the concept of PDAF works with the help of paired photo-diodes which are physically masked to receive light from only one direction. The photo-diode pair is placed close to one another so that they receive same amount of light and each photo-diode allows for light from only one side to pass through i.e. first photo-diode will allow light from left side (and block the light from right side) and the second photo-diode will allow the light from right side (and block the light from left side). This way two images are created and compared to analyse if the object is into focus. If the two images created by the pair of photo-diodes are not similar, the phase difference is calculated to figure out how much lens movement will bring the image into focus.\\
+Generally, hybrid method is used to auto focus the camera quickly and accurately i.e. both CDAF (Contrast Detection Auto Focus) and PDAF are employed. However, PDAF is much faster than CDAF (a more conventional method used in DSLRs).
+
+\subsection*{1.4}
+Shutter speed represents the amount of time for which the sensor is allowed to receive light. Usually, it is represented in seconds (e.g. shutter speed of 1/30s). In mobile phones, the shutter mechanism is achieved by turning the sensors on and off for a certain amount of time and CMOS sensors are used which turn the sensors ON in a sequence of top-left to bottom-right. Unlike mechanical shutters, mobile camera's shutter (rolling shutter) does not open (turn ON) concurrently for the entire lens, i.e. sensor captures light one row at a time.
+\\As we increase the shutter speed, we lose the amount of light that is incident on the sensor (more light produces brighter image). That is why with higher shutter speed, the image will be darker. On the other hand, with faster shutter speed, the electronic shutter can mimic the mechanical shutter (mechanical shutter opens at once for a certain amount of time and exposes the entire lens to capture light concurrently). Another advantage is that with higher shutter speed, the objects in motion can be captured without any motion blur, and the image will be sharp.
+
+\subsection*{1.5}
+OIS stands for Optical Image Stabilisation. OIS is used to counteract slight movements or jitters caused while taking a picture or a video. It is achieved with the help of gyroscope by adjusting the position of the lens or the sensor in case the camera is shaking. Having OIS has been extremely helpful in taking good quality images because the physical hardware compensates for minor hand movements and thereby, offers crisp and blur-free images. 
+\\Without the OIS, if we use lower shutter speed which means that the shutter stays open for a longer period of time, then any movements induced by our hand (or a tripod stand) will be registered on the sensor, thus producing a blurry image. However, if we use OIS, then the minor jitters will be counteracted by the OIS system which will allow a better quality image because lower shutter speed (more light) and less vibrations (steady sensor) means a crisp image.
+
+\subsection*{1.6}
+ISO stands for International Organization for Standardization. ISO sensitivity describes the amount of light needed to expose the lens for good image. ISO sensitivity is represented with integer numbers, usually ranging from 50 to values in thousands. As the ISO number increases, less light is required. This is why low ISO values are used in bright spots and large ISO values are used in dark spots. As the ISO value is increased, it requires less light therefore shutter speed can be reduced. Care should be taken when manually changing the ISO value because a large ISO value against a bright scene may produce a grainy image. This is a result of generating noise by allowing too much light on the sensor. 
+
+\subsection*{2}
+Gamma correction is used to display an output image at an intended luminance. Gamma correction is a two stage process which involves gamma encoding and gamma decoding to store and view the images at the desired output quality (brightness). Because, human eye is more perceptible to changes in the darker tones in comparison to brighter tones, more bits are needed to represent darker tones than the brighter tones. This process of encoding and decoding (correcting) allows the image to be produced as the original color setting (or even, at better brightness level) and it is done with the help of following formula: 
+$$ V_{out} = A*V_{in}^{\gamma} $$
+where, A is usually equal to 1.
+
+Clearly, the final result of gamma correction can be easily linearized by applying the inverse of gamma encoded value to the stored image data. This will ensure that the reproduced image is close to the linear line i.e. line with ${\gamma}$ equal to 1 which represents the original scene. Gamma correction is completed on the image before inputting it to the monitor. 
+
+Plot of output value vs. input value is shown below for ${\gamma}$ = \{0.25, 0.5, 1, 1.5,2\} (Assumption: A = 1):
+\\$V_{in}$ is in the range of 0 to 255 and $V_{out}$ is scaled after computing the product of A and $V_{in}^{\gamma}$ such that range of $V_{out}$ is between 0 and 255 as well. Each curve is scaled independently so that it would fit in the same graph.
+% \includegraphics[scale = 1]{2.png}    %%easier version of pasting an image in the document
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=15cm]{2.png}
+    \caption{Gamma Correction with \textgamma\:= \{0.25, 0.5, 1, 1.5,2\}}
+    \label{fig:2}
+\end{figure}
+\newpage
+
+\subsection*{3}
+As we already know, a color can be described by its two fundamental properties: luminosity and chromaticity.
+
+XYZ color space is developed by CIE (Commission Internationale d’Eclairage) to represent all the colors perceived by humans. XYZ values are calculated using the spectral intensity for light of all wavelength and in a way, it represents the tristimulus values. It is the primary color space i.e. other color spaces, such as RGB, are formed using XYZ color space. Technically speaking, the gamut of other color spaces are usually contained within gamut of XYZ color space. It describes the color by adding the primary colors. It should be noted that Y in XYZ closely represents the luminous (brightness of color).
+
+xyY color space describes a color with the notion of luminous and chromaticity. x and y tell us about the chromaticity of the color and Y tells us about the luminance. Following formulae can be used to figure out xyY values:
+$$ x = \frac{X}{X+Y+Z} $$
+$$ y = \frac{Y}{X+Y+Z} $$
+$$ z = \frac{z}{X+Y+Z} $$
+
+Note that x, y and z values are normalized and their sum equals to 1. So, we can find the value of any two components if two of them are known, e.g., by using $y = 1 - x - z$. However, z value is ignored because x and y tell us about the chromaticity of the color. As stated earlier, Y represents the luminosity value and is retrieved from the original XYZ color space.
+
+Chromaticity diagram shows all the colors percieved by humans on an x-y plane. Chromaticity diagram is in the shape of a horseshoe and the outer circumference represents all of the pure monochromatic color values. The line that connects the two endpoints is called purple line and usually an 'E' letter is shown to mark the white point. From within this chromaticity diagram, we can obtain RGB colors as well which is mapped as a triangle. \\
+From the gamut (scope of chromaticity diagram), we can see that all the values (x, y, z) are positives. This diagram shows all of the chromaticities seen by human eye. Another interesting point is that if we create a straight line using two points on the gamut, then we can create all the colors on the line by mixing the two endpoint colors. Similarly, this concept is applicable with three points forming a triangle as well i.e. three vertices of a triangle can form all of the colors within it. Also, note that no triangle can be formed that can cover the entire gamut of this chromaticity diagram.\\
+Another fact is that colors inside the diagram can be formed in different ways, except the monochromatic colors on the outer rim.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=15cm]{chromaticity.png}
+    \caption{Chromaticity Diagram \cite{Chromaticity:1931}}
+    \label{fig:chromaticity}
+\end{figure}\\
+All of the numbers (in blue color) are in nano-meter (different wavelengths of colors in light)
+
+\subsection*{4}
+Bilinear interpolation is a re-sampling technique that allows to obtain a pixel value from its nearest four pixel values (known). It is similar to linear interpolation, except it is carried out on both x and y directions and the pixel value is weighted-average and is based on the distance between the neighboring four pixels. Bilinear interpolation gives us an opportunity to obtain pixel values for the locations where pixel values are unknown and this interpolation is useful when the image is zoomed, rotated and geometrically corrected.\\
+This is beneficial to us when upscaling the image, because after bilinear interpolation, we have more pixel values than the original image and the image would not seem grainy when zoomed in. Intuitively, interpolation method creates a bigger grid of pixels than the original grid of pixels. In a nutshell, bilinear interpolation provides a pixel value between known four pixels, as shown in the example below.
+
+Formula used for bilinear interpolation is as follows:
+$$ Q(x,y) = ax + by + cxy + d $$ 
+As one can imagine, with four known pixel values, we can get four equations using the above-stated formula to retrieve coefficient values (a, b, c, d).
+\underline {Given}: $x_1 = 10, x = 20, x_2 = 50, y_1 = 10, y = 30, y_2 = 40, Q_{11} = 10, Q_{12} = 100, Q_{21} = 60, Q_{22} = 70$
+\begin{enumerate}
+\item Using Polynominal Fit (approximation), we get:
+$$ Q_{11}: 10 = 10a + 10b + 100c + d $$
+$$ Q_{12}: 100 = 10a + 40b + 400c + d $$
+$$ Q_{21}: 60 = 50a + 10b + 500c + d $$
+$$ Q_{22}: 70 = 50a + 40b + 2000c + d $$
+
+Solving above equations give us: $a = \frac{23}{12}, b = \frac{11}{3}, c = \frac{-1}{15}, d = \frac{-235}{6}$
+
+So, in this case, the bilinear equation becomes: $$ Q(x,y) = \frac{23}{12}x + \frac{11}{3}y - \frac{1}{15}xy - \frac{235}{6}  $$
+Therefore, $$ Q_{P} = Q_{(20, 30)} = \frac{23}{12}*20 + \frac{11}{3}*30 - \frac{1}{15}*20*30 - \frac{235}{6} = \left \lfloor \frac{415}{6} \right \rfloor  = 69 $$
+So, the pixel value at point P is 69 which seems true to the fact that it is weight-average of its neighboring pixels.
+
+\item Using Repeated Linear Interpolation, we get:
+$$ Q_{R_1} = \frac{x_2-x}{x_2-x_1}.Q_{11} + \frac{x-x_1}{x_2-x_1}.Q_{21} = \frac{30}{40}.10 + \frac{10}{40}.60 = 22.5 $$
+$$ Q_{R_2} = \frac{x_2-x}{x_2-x_1}.Q_{12} + \frac{x-x_1}{x_2-x_1}.Q_{22} = \frac{30}{40}.100 + \frac{10}{40}.70 = 92.5 $$
+Now that we have interpolated pixel values along x-axis, we will do the same along y-axis while using $Q_{R_1}$ and $Q_{R_2}$ values:
+$$ Q_{P} = \frac{y_2-y}{y_2-y_1}.Q_{R_1} + \frac{y-y_1}{y_2-y_1}.Q_{R_2} = \frac{20}{30}.(92.5) + \frac{10}{30}.(22.5) = \lfloor69.17\rfloor = 69 $$
+Both methods give us the same result.
+\end{enumerate}
+
+\newpage
+
+\section*{Implementation}
+\subsection*{1 - Hello CV}
+
+\begin{itemize}
+
+    \item Angle 0\textdegree\: - 
+    \begin{figure}[htp]
+    \centering
+    \includegraphics[width=14cm]{Impl1/img1_0_code.png}
+    \caption{Angle 0\textdegree \:Code} 
+    \label{fig:Angle0 Code}
+    \end{figure}\\
+    \begin{figure}[htp]
+    \centering
+    \includegraphics[width=13cm]{Impl1/img1_0.png}
+    \caption{Angle 0\textdegree \: Result} 
+    \label{fig:Angle0}
+    \end{figure}\newpage
+    
+    \item Angle 90\textdegree\: - 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Impl1/img1_90_code.png}
+    \caption{Angle 90\textdegree \:Code} 
+    \label{fig:Angle90 Code}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{Impl1/img1_90.png}
+    \caption{Angle 90\textdegree \: Result} 
+    \label{fig:Angle90}
+    \end{figure}\newpage
+    
+    \item Angle 180\textdegree\: - 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Impl1/img1_180_code.png}
+    \caption{Angle 180\textdegree \:Code} 
+    \label{fig:Angle180 Code}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=18cm]{Impl1/img1_180.png}
+    \caption{Angle 180\textdegree \: Result} 
+    \label{fig:Angle180}
+    \end{figure}\newpage
+    
+    \item Angle 270\textdegree\: - 
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{Impl1/img1_270_code.png}
+    \caption{Angle 270\textdegree \:Code} 
+    \label{fig:Angle270 Code}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{Impl1/img1_270.png}
+    \caption{Angle 270\textdegree \: Result} 
+    \label{fig:Angle270}
+    \end{figure}
+\end{itemize}
+
+\subsection*{2 - Gamma Correction}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{Impl2/img2_gamma_code.png}
+    \caption{Gamma Correction Code} 
+    \label{fig:Gamma Correction Code}
+    \end{figure}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{Impl2/img2_gamma.png}
+    \caption{Gamma Correction Result} 
+    \label{fig:Gamma Correction Result}
+    \end{figure}
+    
+\subsection*{2 - Skin Detection}
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{Impl3/impl3_code.png}
+    \caption{Skin Detection Code} 
+    \label{fig:Skin Detection Code}
+    \end{figure}
+    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{Impl3/hist_hue.png}
+    \caption{Skin Detection Histogram (Hue)} 
+    \label{fig:Skin Detection Histogram (Hue)}
+    \end{figure}
+    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{Impl3/selfie1.jpg}
+    \caption{Selfie for Skin Detection} 
+    \label{fig:Selfie for Skin Detection}
+    \end{figure}
+    
+    \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.25]{Impl3/impl3.png}
+    \caption{Skin Detection Result} 
+    \label{fig:Skin Detection Result}
+    \end{figure}
+
+\newpage
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{bibfile}
+
+\end{document}
